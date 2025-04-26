@@ -41,4 +41,5 @@ require (
 	golang.org/x/sys v0.31.0 // indirect
 )
 
+// TODO: Actually reference my fork and/or langchaingo once upstreamed.
 replace github.com/tmc/langchaingo => ../langchaingo/

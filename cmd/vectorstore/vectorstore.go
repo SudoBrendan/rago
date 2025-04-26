@@ -9,7 +9,7 @@ import (
 func NewVectorStoreCmd(app *app.App) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:     "vectorstore",
-		Short:   "Interact with the configured vector store",
+		Short:   "Interact with the configured vector data store.",
 		Aliases: []string{"vs"},
 	}
 	cmd.AddCommand(NewAddDocumentsCmd(app))

@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/langchaingo/schema"
 )
 
+// TODO: Actually use this lol. It populates an `id`, but is technically dead
+// code. Should be used to prevent duplication based on the sha, but I think
+// we're limited by pgvector/VectorStore interface current implementation for
+// that. Ideally, we have an UPSERT that uses this function as a primary key.
 func HashDocument(doc schema.Document) string {
 	h := sha256.New()
 	h.Write([]byte(doc.PageContent))
@@ -21,7 +25,7 @@ func HashDocument(doc schema.Document) string {
 	sort.Strings(keys)
 	for _, k := range keys {
 		h.Write([]byte(k))
-		h.Write([]byte(fmt.Sprintf("%v", doc.Metadata[k])))
+		h.Write(fmt.Appendf(nil, "%v", doc.Metadata[k]))
 	}
 
 	return hex.EncodeToString(h.Sum(nil))

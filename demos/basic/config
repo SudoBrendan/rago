@@ -1,0 +1,38 @@
+# Models are LLMs
+models:
+- name: mistral
+  kind: ollama
+  options:
+    model: mistral
+    serverURL: http://localhost:11434
+
+# VectorStores hold searchable vectors for information
+vectorStores:
+- name: pgvector
+  kind: pgvector
+  embedder:
+    name: nomic-embed-text
+    kind: ollama
+    options:
+      model: nomic-embed-text
+      serverURL: http://localhost:11434
+  options:
+    connectionURL: "postgres://testuser:testpass@localhost:5432/testdb"
+    preDeleteCollection: true
+
+# Loaders retrieve/parse information to upload to VectorStores
+loaders:
+- name: my-data-markdown
+  kind: markdown
+  options:
+    directory: ~/rago/data
+
+# Contexts are the glue that map all the pieces together
+contexts:
+- name: basic
+  model: mistral
+  vectorStore: pgvector
+  loader: my-data-markdown
+
+# The current-context is what you are currenlty configured for.
+current-context: basic

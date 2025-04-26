@@ -11,7 +11,6 @@ import (
 // What you need to bring
 type DocumentLoader interface {
 	Load(ctx context.Context) ([]schema.Document, error)
-	Name() string
 }
 
 type Factory func(ctx context.Context, cfg config.LoaderCfg) (DocumentLoader, error)

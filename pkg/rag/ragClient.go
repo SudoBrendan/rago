@@ -8,6 +8,8 @@ import (
 	"github.com/tmc/langchaingo/vectorstores"
 )
 
+// TODO: this is currently dead code; the project took a different direction.
+
 type RAGClient struct {
 	store vectorstores.VectorStore
 	llm   llms.Model

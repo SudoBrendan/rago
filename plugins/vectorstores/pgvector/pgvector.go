@@ -37,11 +37,6 @@ func NewFromConfig(ctx context.Context, cfg config.VectorStoreCfg) (vectorstores
 
 	storeOpts = append(storeOpts, pgvector.WithEmbedder(embedder))
 
-	// TODO: Submit a BUGFIX... I hate this kills the table on any call to New()...
-	// not useful for reusing clients... and I don't feel like exposing that confusing
-	// functionality.
-	//storeOpts = append(storeOpts, pgvector.WithPreDeleteCollection(true))
-
 	// Create the store
 	store, err := pgvector.New(ctx, storeOpts...)
 	if err != nil {

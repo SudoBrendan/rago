@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  pgvector:
+    build:
+      context: .
+      dockerfile: postgres.Dockerfile
+    restart: always
+    ports:
+      - "5432:5432"
+    env_file: ".env"
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_MODELS=nomic-embed-text # NOTE: This wasn't working for me, had to use `ollama pull`...
+    restart: always
+
+volumes:
+  ollama-data:  
+  

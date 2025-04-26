@@ -29,11 +29,6 @@ func NewFromConfig(ctx context.Context, cfg config.LoaderCfg) (loaders.DocumentL
 	if err != nil {
 		return nil, err
 	}
-	//mdOpts, err := decodeTextSplitterOptions(cfg.Options)
-	//if err != nil {
-	//	return nil, err
-	//}
-	//ts := textsplitter.NewMarkdownTextSplitter(mdOpts...)
 
 	// TODO: write a better structure for required and default values, likely in pkg/config.
 	if loader.Directory == "" {
@@ -43,48 +38,6 @@ func NewFromConfig(ctx context.Context, cfg config.LoaderCfg) (loaders.DocumentL
 		loader.Glob = "*.md"
 	}
 	return loader, nil
-
-	//return MarkdownLoader{
-	//	Directory:            cfg.Directory,
-	//	Glob:                 cfg.Glob,
-	//	MarkdownTextSplitter: *ts,
-	//}, nil
-}
-
-//func New(options map[string]any) (*MarkdownLoader, error) {
-//	dir, _ := options["directory"].(string)
-//	if dir == "" {
-//		return nil, fmt.Errorf("missing required option: directory")
-//	}
-//	glob, _ := options["glob"].(string)
-//	if glob == "" {
-//		glob = "*.md"
-//	}
-//
-//	// Optional splitter config
-//	chunkSize := 300
-//	chunkOverlap := 50
-//	if val, ok := options["chunkSize"].(int); ok {
-//		chunkSize = val
-//	}
-//	if val, ok := options["chunkOverlap"].(int); ok {
-//		chunkOverlap = val
-//	}
-//
-//	splitter := textsplitter.NewRecursiveCharacter(
-//		textsplitter.WithChunkSize(chunkSize),
-//		textsplitter.WithChunkOverlap(chunkOverlap),
-//	)
-//
-//	return &MarkdownLoader{
-//		Dir:      dir,
-//		Glob:     glob,
-//		Splitter: splitter,
-//	}, nil
-//}
-
-func (m MarkdownLoader) Name() string {
-	return "markdown"
 }
 
 func (m MarkdownLoader) Load(ctx context.Context) ([]schema.Document, error) {
@@ -127,6 +80,5 @@ func (m MarkdownLoader) Load(ctx context.Context) ([]schema.Document, error) {
 }
 
 func init() {
-	// Register this loader with our factory as this unique name
 	loaders.Register("markdown", NewFromConfig)
 }
