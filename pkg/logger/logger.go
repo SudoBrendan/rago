@@ -1,7 +1,14 @@
 package logger
 
 import (
+	"github.com/fatih/color"
 	"go.uber.org/zap"
+)
+
+var (
+	debugColor = color.New(color.FgYellow).SprintFunc()
+	infoColor  = color.New(color.FgYellow).SprintFunc()
+	errorColor = color.New(color.FgRed).SprintFunc()
 )
 
 type Logger interface {
@@ -16,15 +23,15 @@ type MyLogger struct {
 }
 
 func (l *MyLogger) Debug(msg string) {
-	l.log.Debug(msg)
+	l.log.Debug(debugColor(msg))
 }
 
 func (l *MyLogger) Info(msg string) {
-	l.log.Info(msg)
+	l.log.Info(infoColor(msg))
 }
 
 func (l *MyLogger) Error(msg string) {
-	l.log.Error(msg)
+	l.log.Error(errorColor(msg))
 }
 
 func (l *MyLogger) GetDefer() func() {

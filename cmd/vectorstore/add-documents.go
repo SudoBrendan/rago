@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	app "github.com/SudoBrendan/rago/pkg/cli"
+	"github.com/SudoBrendan/rago/pkg/app"
 )
 
 func NewAddDocumentsCmd(app *app.App) *cobra.Command {

@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/SudoBrendan/rago/cmd"
-	cli "github.com/SudoBrendan/rago/pkg/cli"
+	"github.com/SudoBrendan/rago/pkg/app"
 	"github.com/SudoBrendan/rago/pkg/config"
 	"github.com/SudoBrendan/rago/pkg/logger"
 	"github.com/SudoBrendan/rago/pkg/plugins/loaders"
@@ -65,7 +65,7 @@ func main() {
 	}
 
 	// Create App to hold the important stuff
-	app := &cli.App{
+	app := &app.App{
 		Model:       llmClient,
 		VectorStore: vectorStore,
 		Loader:      loader,

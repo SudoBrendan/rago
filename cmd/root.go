@@ -3,8 +3,9 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
+	"github.com/SudoBrendan/rago/cmd/chat"
 	"github.com/SudoBrendan/rago/cmd/vectorstore"
-	app "github.com/SudoBrendan/rago/pkg/cli"
+	"github.com/SudoBrendan/rago/pkg/app"
 )
 
 func NewRootCmd(app *app.App) *cobra.Command {
@@ -15,6 +16,7 @@ func NewRootCmd(app *app.App) *cobra.Command {
 	}
 
 	cmd.AddCommand(vectorstore.NewVectorStoreCmd(app))
+	cmd.AddCommand(chat.NewChatCmd(app))
 
 	return cmd
 }
