@@ -65,15 +65,15 @@ models:
 vectorStores:
 - name: pgvector
   kind: pgvector
-  embedder:
-    name: nomic-embed-text
-    kind: ollama
-    options:
-      model: nomic-embed-text
-      serverURL: http://localhost:11434
   options:
     connectionURL: "postgres://testuser:testpass@localhost:5432/testdb"
     preDeleteCollection: true
+    embedder:
+      name: nomic-embed-text
+      kind: ollama
+      options:
+        model: nomic-embed-text
+        serverURL: http://localhost:11434
 
 loaders:
 - name: my-wiki-loader
