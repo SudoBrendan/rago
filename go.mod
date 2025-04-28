@@ -44,5 +44,5 @@ require (
 	golang.org/x/sys v0.31.0 // indirect
 )
 
-// TODO: Actually reference my fork and/or langchaingo once upstreamed.
-replace github.com/tmc/langchaingo => ../langchaingo/
+// TODO: update this based on direction of https://github.com/tmc/langchaingo/issues/1239
+replace github.com/tmc/langchaingo => github.com/SudoBrendan/langchaingo v0.0.0-fix-pgvector-drop
